@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Card from "./components/Card";
 
 export default function Home() {
   return (
@@ -29,6 +30,7 @@ export default function Home() {
           </Button>
         </div>
       </section>
+      <Card />
     </main>
   );
 }
