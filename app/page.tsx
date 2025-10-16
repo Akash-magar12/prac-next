@@ -1,54 +1,32 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-50 text-gray-900">
+    <main className="min-h-screen bg-black text-white">
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center py-20 px-6 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          Find Your Dream Job
+      <section className="flex flex-col items-center justify-center text-center py-24 px-6">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
+          Find Your Next Opportunity
         </h1>
-        <p className="text-lg md:text-xl mb-8">
-          Browse thousands of remote & local opportunities from top companies.
+        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mb-8">
+          Discover thousands of jobs from top companies. Search, explore, and
+          apply — all in one place.
         </p>
 
         {/* Search Bar */}
-        <div className="w-full max-w-xl flex bg-white rounded-full overflow-hidden shadow-lg">
-          <input
+        <div className="flex w-full max-w-lg space-x-2">
+          <Input
             type="text"
             placeholder="Search jobs, roles, or keywords..."
-            className="flex-grow px-6 py-3 text-gray-800 outline-none"
+            className="bg-white text-black placeholder:text-gray-500"
           />
-          <button className="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 text-white font-semibold">
+          <Button
+            variant="default"
+            className="bg-white text-black hover:bg-gray-200"
+          >
             Search
-          </button>
-        </div>
-      </section>
-
-      {/* Latest Jobs Section */}
-      <section className="py-16 px-6 max-w-6xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-8">Latest Job Openings</h2>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Job Card Example */}
-          <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition">
-            <h3 className="font-semibold text-lg mb-2">Frontend Developer</h3>
-            <p className="text-gray-600 mb-2">Remote | Full Time</p>
-            <p className="text-sm text-gray-500 mb-4">
-              Company: OpenAI Technologies
-            </p>
-            <button className="text-indigo-600 font-medium hover:underline">
-              View Details →
-            </button>
-          </div>
-
-          {/* Repeat Job Cards (You’ll replace these with API data later) */}
-          <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition">
-            <h3 className="font-semibold text-lg mb-2">UI/UX Designer</h3>
-            <p className="text-gray-600 mb-2">New York | Hybrid</p>
-            <p className="text-sm text-gray-500 mb-4">Company: Pixel Studio</p>
-            <button className="text-indigo-600 font-medium hover:underline">
-              View Details →
-            </button>
-          </div>
+          </Button>
         </div>
       </section>
     </main>
