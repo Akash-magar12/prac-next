@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 interface CharacterType {
@@ -12,7 +13,7 @@ const Pagination = () => {
   const [characters, setCharacters] = useState<CharacterType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
-  const [totalPages, setTotalPages] = useState<number>(0);
+  const [totalPage, setTotalPage] = useState<number>(0);
   const fetchCharacters = async (pageNumber: number) => {
     try {
       setLoading(true);
@@ -20,8 +21,8 @@ const Pagination = () => {
         `https://rickandmortyapi.com/api/character?page=${pageNumber}`
       );
       const data = await response.json();
+      setTotalPage(data.info.pages);
       setCharacters(data.results);
-      setTotalPages(data.info.pages);
     } catch (error) {
       console.error("Error fetching characters:", error);
     } finally {
@@ -29,17 +30,15 @@ const Pagination = () => {
     }
   };
 
-  useEffect(() => {
-    fetchCharacters(page);
-  }, [page]);
-
   const handleNext = () => {
-    if (page < totalPages) setPage((prev) => prev + 1);
+    if (page < totalPage) setPage((prev) => prev + 1);
   };
-
   const handlePrev = () => {
     if (page > 1) setPage((prev) => prev - 1);
   };
+  useEffect(() => {
+    fetchCharacters(page);
+  }, [page]);
 
   if (loading) {
     return <p className="text-center mt-10 text-gray-500">Loading...</p>;
@@ -58,7 +57,13 @@ const Pagination = () => {
             key={char.id}
             className="bg-gray-100 p-2 rounded-lg shadow hover:scale-105 transition-transform"
           >
-            <img src={char.image} alt={char.name} className="rounded-lg" />
+            <Image
+              width={100}
+              height={100}
+              src={char.image}
+              alt={char.name}
+              className="rounded-lg"
+            />
             <h2 className="font-semibold text-center text-black mt-2">
               {char.name}
             </h2>
@@ -79,14 +84,14 @@ const Pagination = () => {
         </button>
 
         <span className="font-medium">
-          Page {page} of {totalPages}
+          Page {page} of {totalPage}
         </span>
 
         <button
+          disabled={page === totalPage}
           onClick={handleNext}
-          disabled={page === totalPages}
           className={`px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition ${
-            page === totalPages ? "opacity-50 cursor-not-allowed" : ""
+            page === totalPage ? "opacity-50 cursor-not-allowed" : ""
           }`}
         >
           Next
